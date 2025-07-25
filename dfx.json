@@ -1,0 +1,52 @@
+{
+  "canisters": {
+    "evm_rpc": {
+      "candid": "https://github.com/internet-computer-protocol/evm-rpc-canister/releases/latest/download/evm_rpc.did",
+      "declarations": {
+        "output": "declarations/evm_rpc"
+      },
+      "init_arg": "(record { nodesInSubnet = opt (34 : nat32) })",
+      "remote": {
+        "candid": "declarations/evm_rpc/evm_rpc.did",
+        "id": {
+          "ic": "7hfb6-caaaa-aaaar-qadga-cai"
+        }
+      },
+      "specified_id": "7hfb6-caaaa-aaaar-qadga-cai",
+      "type": "custom",
+      "wasm": "https://github.com/internet-computer-protocol/evm-rpc-canister/releases/latest/download/evm_rpc.wasm.gz"
+    },
+    "galaxy": {
+      "candid": "canisters/galaxy/galaxy.did",
+      "specified_id": "gdh4h-lyaaa-aaaal-ar2ba-cai",
+      "declarations": {
+        "output": "declarations/galaxy"
+      },
+      
+      "package": "galaxy",
+      "type": "rust",
+      "gzip": true
+    },
+    "constellation": {
+      "candid": "canisters/constellation/constellation.did",
+      "declarations": {
+        "output": "declarations/constellation"
+      },
+      
+      "package": "constellation",
+      "type": "rust"
+    },
+    "ic_siwe_provider": {
+      "type": "custom",
+      "candid": "https://github.com/kristoferlund/ic-siwe/releases/download/v0.1.1/ic_siwe_provider.did",
+      "wasm": "https://github.com/kristoferlund/ic-siwe/releases/download/v0.1.1/ic_siwe_provider.wasm.gz",
+      "declarations": {
+        "output": "declarations/ic_siwe_provider"
+      },
+      "init_arg": "(record { domain = \"127.0.0.1\"; uri = \"http://127.0.0.1:4943\"; salt = \"mysecretsalt123\"; chain_id = opt 1; scheme = opt \"http\"; statement = opt \"Login to the app\"; sign_in_expires_in = opt 300000000000; session_expires_in = opt 604800000000000; })"
+
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

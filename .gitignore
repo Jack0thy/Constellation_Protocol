@@ -1,0 +1,32 @@
+# Build outputs
+.dfx/
+target/
+target/*
+dist/
+build/
+
+# Environment files
+.env
+.env.*
+
+# Dependencies
+node_modules/
+.vessel/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Motoko declarations
+**/declarations/
+
+# MOPS
+.mops/
+
+declarations/
+declarations/*
+packages/shared/tsconfig.tsbuildinfo
+package-lock.json
+packages/shared/tsconfig.tsbuildinfo

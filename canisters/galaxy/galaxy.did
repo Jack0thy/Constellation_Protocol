@@ -1,0 +1,101 @@
+type Result = variant { Ok : text; Err : text };
+type Result_2 = variant { Ok : bool; Err : text };
+type Result_3 = variant { Ok : vec text; Err : text };
+type Result_4 = variant { Ok : nat64; Err : text };
+
+
+type AddEthBlockArgs = record {
+    eth_address: text;
+    token_id: text;
+    amount: text;
+    data: text;
+    eth_metadata_url: text;
+    metadata: text;
+};
+
+type AddIcrcBlockArgs = record {
+    kind: text;
+    block_data: text; 
+};
+
+type RegisterPublicNFTArgs = record {
+  contract_address : text;
+  token_id : nat64;
+  eth_contract_address : text;
+};
+
+type TransferOwnershipArgs = record {
+  contract_address : text;
+  new_owner : text;
+};
+
+type Principal = principal;
+
+type DeploymentResult = record {
+    eth_address: text;
+    canister_id: Principal;
+};
+
+
+type DeployEthereumContractArgs = record {
+    name: text;
+    symbol: text;
+    initial_uri: text;
+    canister_id: text;
+};
+
+type DeployAssetContractArgs = record {
+    name: text;
+    symbol: text;
+    initial_uri: text;  
+};
+
+type AssetMapping = record {
+    canister_id: principal;
+    contract_address: vec nat8;
+    metadata: AssetMetadata;
+};
+
+type AssetMetadata = record {
+    name: text;
+    symbol: text;
+    initial_uri: text;
+    canister_id: text;
+};
+
+type AssetMappingDisplay = record {
+    canister_id: principal;
+    contract_address: text;  // Will show as hex string
+    metadata: AssetMetadata;
+};
+
+
+service : {
+  add_asset_mapping : (Principal, text, AssetMetadata) -> ();
+  cancel_transaction : () -> (Result);
+  create_icrc3_canister : () -> (Principal);
+  deploy_ethereum_contract : (DeployEthereumContractArgs) -> (Result);
+  deploy_asset : (DeployAssetContractArgs, text) -> (variant { Ok: DeploymentResult; Err: text });
+  delete_asset_canister : (Principal) -> (Result);
+  get_address : () -> (Result);
+  get_all_mappings : () -> (vec AssetMappingDisplay) query;
+  get_all_asset_mappings : () -> (vec AssetMapping) query;
+  get_balance : (opt text) -> (Result);
+  get_contract_address : () -> (text) query;
+  get_entire_chain : (Principal) -> (Result);
+  get_latest_block : () -> (Result);
+  get_asset_contract_address : (Principal) -> (opt text) query;
+  get_asset_metadata : (Principal) -> (opt AssetMetadata) query;
+  get_asset_metadata_json : (Principal) -> (opt text) query;
+  get_asset_principal: () -> (opt Principal) query;
+  has_asset_mapping : (Principal) -> (bool) query; 
+  set_contract_address : (text) -> (text);
+  set_asset_principal : (Principal) -> (variant { Ok: AssetMetadata; Err: text });
+  test_contract_connection : (text) -> (Result);
+  transfer_ownership : (TransferOwnershipArgs) -> (Result);
+  get_balance_of : (text, text, nat64) -> (Result_4);
+  add_block : (Principal, AddEthBlockArgs, AddIcrcBlockArgs) -> (Result);
+  json_get_all_mappings : () -> (text) query;
+  upload_wasm : (vec nat8) -> (variant { Ok; Err: text });
+  get_stored_wasm : () -> (opt vec nat8) query;
+}

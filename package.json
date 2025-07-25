@@ -1,0 +1,39 @@
+{
+  "name": "constellation-protocol",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "canisters/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "dev": "npm run dev --workspaces",
+    "update-canister-ids": "node scripts/update-canister-ids.js",
+    "prebuild": "npm run update-canister-ids"
+  },
+  "dependencies": {
+    "@dfinity/agent": "^2.4.0",
+    "@dfinity/auth-client": "^2.4.0",
+    "@dfinity/candid": "^2.4.0",
+    "@stripe/stripe-js": "^7.3.0",
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "express": "^5.1.0",
+    "jszip": "^3.10.1",
+    "lucide-react": "^0.508.0",
+    "node-fetch": "^3.3.2",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "util": "^0.12.5",
+    "vite-plugin-node-polyfills": "^0.23.0"
+  },
+  "devDependencies": {
+    "@esbuild-plugins/node-modules-polyfill": "^0.2.2",
+    "@types/cors": "^2.8.19",
+    "@types/crypto-js": "^4.2.2",
+    "@types/express": "^5.0.3",
+    "rollup-plugin-node-polyfills": "^0.2.1"
+  }
+}

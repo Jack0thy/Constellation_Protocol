@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@declarations/*": ["declarations/*"],
+      "@project/dfx.json": ["dfx.json"]
+    }
+  },
+  "references": [
+    { "path": "./packages/shared" }
+  ]
+} 
